@@ -5,27 +5,32 @@ import {
   View,
   Image,
   ScrollView,
-} from 'react-native';
-import React, {useState} from 'react';
-import WrapperContainer from '../container/WrapperContainer';
-import TextComp from '../components/TextComp';
-import {useSelector} from 'react-redux';
-import colors from '../styles/colors';
-import fonts from '../assets/fonts';
-import {scale, textScale, verticalScale, width} from '../styles/responsiveSize';
-import {changeAppTheme} from '../redux/actions/appSettings';
-import images from '../assets';
+} from "react-native";
+import React, { useState } from "react";
+import WrapperContainer from "../container/WrapperContainer";
+import TextComp from "../components/TextComp";
+import { useSelector } from "react-redux";
+import colors from "../styles/colors";
+import fonts from "../assets/fonts";
+import {
+  scale,
+  textScale,
+  verticalScale,
+  width,
+} from "../styles/responsiveSize";
+import { changeAppTheme } from "../redux/actions/appSettings";
+import images from "../assets";
 
-const CountryDetail = ({navigation, route}) => {
-  const {selectedTheme} = useSelector(state => state?.appSetting);
+const CountryDetail = ({ navigation, route }) => {
+  const { selectedTheme } = useSelector((state) => state?.appSetting);
   const data = route?.params?.data ?? false;
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const onPressTheme = () => {
     if (isDarkTheme) {
-      changeAppTheme('light');
+      changeAppTheme("light");
     } else {
-      changeAppTheme('dark');
+      changeAppTheme("dark");
     }
     setIsDarkTheme(!isDarkTheme);
   };
@@ -37,40 +42,42 @@ const CountryDetail = ({navigation, route}) => {
           styles.headerView,
           {
             backgroundColor:
-              selectedTheme == 'dark' ? colors.light_background : colors.white,
+              selectedTheme == "dark" ? colors.light_background : colors.white,
           },
-        ]}>
+        ]}
+      >
         <TextComp
           text="Where in the world?"
-          style={{fontFamily: fonts.NunitoBold, fontWeight: '700'}}
+          style={{ fontFamily: fonts.NunitoBold, fontWeight: "700" }}
         />
         <TouchableOpacity
           onPress={onPressTheme}
           style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Image
             source={images.moon_fill}
             tintColor={
-              selectedTheme == 'dark' ? colors.white : colors.blackColor
+              selectedTheme == "dark" ? colors.white : colors.blackColor
             }
             resizeMode="contain"
-            style={{height: scale(10), width: scale(10)}}
+            style={{ height: scale(10), width: scale(10) }}
           />
           <TextComp
-            text={selectedTheme == 'dark' ? 'Light Mode' : 'Dark Mode'}
+            text={selectedTheme == "dark" ? "Light Mode" : "Dark Mode"}
             style={{
               paddingLeft: scale(10),
               fontSize: textScale(10),
-              fontWeight: '500',
+              fontWeight: "500",
               fontFamily: fonts.NunitoMedium,
             }}
           />
         </TouchableOpacity>
       </View>
-      <View style={{paddingHorizontal: scale(16)}}>
+      <View style={{ paddingHorizontal: scale(16) }}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           activeOpacity={0.8}
@@ -78,25 +85,26 @@ const CountryDetail = ({navigation, route}) => {
             styles.backButton,
             {
               backgroundColor:
-                selectedTheme == 'dark'
+                selectedTheme == "dark"
                   ? colors.light_background
                   : colors.white,
             },
-          ]}>
+          ]}
+        >
           <Image
             source={images.back}
             tintColor={
-              selectedTheme == 'dark' ? colors.white : colors.blackColor
+              selectedTheme == "dark" ? colors.white : colors.blackColor
             }
             resizeMode="contain"
-            style={{height: scale(15), width: scale(20)}}
+            style={{ height: scale(15), width: scale(20) }}
           />
           <TextComp
-            text={'Back'}
+            text={"Back"}
             style={{
               paddingLeft: scale(10),
               fontSize: textScale(10),
-              fontWeight: '500',
+              fontWeight: "500",
               fontFamily: fonts.NunitoMedium,
             }}
           />
@@ -107,7 +115,8 @@ const CountryDetail = ({navigation, route}) => {
           }}
           style={{
             height: verticalScale(180),
-            width: '100%',
+            width: "100%", 
+            
             marginTop: verticalScale(40),
           }}
         />
@@ -115,25 +124,27 @@ const CountryDetail = ({navigation, route}) => {
           text={data?.name?.common}
           style={{
             fontSize: textScale(15),
-            fontWeight: '700',
+            fontWeight: "700",
             marginTop: verticalScale(35),
           }}
         />
         <TextComp
           text="Native Name : "
           numberOfLines={1}
-          style={styles.boldText}>
+          style={styles.boldText}
+        >
           <Text
             numberOfLines={1}
             style={{
               fontSize: textScale(11),
-              fontWeight: '400',
+              fontWeight: "400",
               color:
-                selectedTheme == 'dark'
+                selectedTheme == "dark"
                   ? colors.white_light
                   : colors.light_background,
               marginTop: verticalScale(9),
-            }}>
+            }}
+          >
             {Object.values(data?.name?.nativeName)[0]?.official}
           </Text>
         </TextComp>
@@ -141,13 +152,14 @@ const CountryDetail = ({navigation, route}) => {
           <Text
             style={{
               fontSize: textScale(11),
-              fontWeight: '400',
+              fontWeight: "400",
               color:
-                selectedTheme == 'dark'
+                selectedTheme == "dark"
                   ? colors.white_light
                   : colors.light_background,
               marginTop: verticalScale(9),
-            }}>
+            }}
+          >
             {data?.population}
           </Text>
         </TextComp>
@@ -155,13 +167,14 @@ const CountryDetail = ({navigation, route}) => {
           <Text
             style={{
               fontSize: textScale(11),
-              fontWeight: '400',
+              fontWeight: "400",
               color:
-                selectedTheme == 'dark'
+                selectedTheme == "dark"
                   ? colors.white_light
                   : colors.light_background,
               marginTop: verticalScale(9),
-            }}>
+            }}
+          >
             {data?.region}
           </Text>
         </TextComp>
@@ -169,13 +182,14 @@ const CountryDetail = ({navigation, route}) => {
           <Text
             style={{
               fontSize: textScale(11),
-              fontWeight: '400',
+              fontWeight: "400",
               color:
-                selectedTheme == 'dark'
+                selectedTheme == "dark"
                   ? colors.white_light
                   : colors.light_background,
               marginTop: verticalScale(9),
-            }}>
+            }}
+          >
             {data?.subregion}
           </Text>
         </TextComp>
@@ -183,13 +197,14 @@ const CountryDetail = ({navigation, route}) => {
           <Text
             style={{
               fontSize: textScale(11),
-              fontWeight: '400',
+              fontWeight: "400",
               color:
-                selectedTheme == 'dark'
+                selectedTheme == "dark"
                   ? colors.white_light
                   : colors.light_background,
               marginTop: verticalScale(9),
-            }}>
+            }}
+          >
             {data?.capital}
           </Text>
         </TextComp>
@@ -197,13 +212,14 @@ const CountryDetail = ({navigation, route}) => {
           <Text
             style={{
               fontSize: textScale(11),
-              fontWeight: '400',
+              fontWeight: "400",
               color:
-                selectedTheme == 'dark'
+                selectedTheme == "dark"
                   ? colors.white_light
                   : colors.light_background,
               marginTop: verticalScale(9),
-            }}>
+            }}
+          >
             {data?.tld}
           </Text>
         </TextComp>
@@ -211,13 +227,14 @@ const CountryDetail = ({navigation, route}) => {
           <Text
             style={{
               fontSize: textScale(11),
-              fontWeight: '400',
+              fontWeight: "400",
               color:
-                selectedTheme == 'dark'
+                selectedTheme == "dark"
                   ? colors.white_light
                   : colors.light_background,
               marginTop: verticalScale(9),
-            }}>
+            }}
+          >
             {Object.values(data?.currencies)[0]?.name}
           </Text>
         </TextComp>
@@ -225,31 +242,31 @@ const CountryDetail = ({navigation, route}) => {
           <Text
             style={{
               fontSize: textScale(11),
-              fontWeight: '400',
+              fontWeight: "400",
               color:
-                selectedTheme == 'dark'
+                selectedTheme == "dark"
                   ? colors.white_light
                   : colors.light_background,
               marginTop: verticalScale(9),
-            }}>
-            {Object.values(data?.languages).map(lan => `${lan} `)}
+            }}
+          >
+            {Object.values(data?.languages).map((lan) => `${lan} `)}
             {/* {data?.currencies?.currencyCode?.name} */}
           </Text>
         </TextComp>
         <TextComp text="Border Countries : " style={styles.boldText2} />
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
+            flexDirection: "row",
+            justifyContent: "space-between",
             marginTop: verticalScale(20),
-            shadowColor: '#171717',
-            shadowOffset: {width: -2, height: 1},
+            shadowColor: "#171717",
+            shadowOffset: { width: -2, height: 1 },
             shadowOpacity: 0.15,
             shadowRadius: 3,
-          }}>
-          <ScrollView 
-          showsHorizontalScrollIndicator={false}
-          horizontal={true}>
+          }}
+        >
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
             {Array.isArray(data?.borders) &&
               data?.borders.length > 0 &&
               data.borders.map((res, i) => (
@@ -257,22 +274,25 @@ const CountryDetail = ({navigation, route}) => {
                   key={`borders${i}`}
                   style={{
                     height: verticalScale(30),
-                    width: scale(110),marginRight:10,
+                    width: scale(110),
+                    marginRight: 10,
                     backgroundColor:
-                      selectedTheme == 'dark'
+                      selectedTheme == "dark"
                         ? colors.light_background
                         : colors.white,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   <Text
                     style={{
                       color:
-                        selectedTheme == 'dark'
+                        selectedTheme == "dark"
                           ? colors.white
                           : colors.blackColor,
-                      fontWeight: '500',
-                    }}>
+                      fontWeight: "500",
+                    }}
+                  >
                     {res}
                   </Text>
                 </View>
@@ -289,41 +309,41 @@ export default CountryDetail;
 const styles = StyleSheet.create({
   headerView: {
     height: verticalScale(50),
-    width: '100%',
-    backgroundColor: '#2e3742',
-    flexDirection: 'row',
-    alignItems: 'center',
+    width: "100%",
+    backgroundColor: "#2e3742",
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: scale(10),
-    justifyContent: 'space-between',
-    shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 1},
+    justifyContent: "space-between",
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
   },
   backButton: {
-    flexDirection: 'row',
+    flexDirection: "row",
     // justifyContent:'center',
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: scale(15),
     height: scale(30),
     backgroundColor: colors.light_background,
     marginTop: verticalScale(30),
     width: 100,
-    shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 1},
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 1 },
     shadowOpacity: 0.15,
     shadowRadius: 3,
   },
   boldText: {
     marginTop: verticalScale(15),
-    fontWeight: '500',
+    fontWeight: "500",
   },
   boldText1: {
     marginTop: verticalScale(10),
-    fontWeight: '500',
+    fontWeight: "500",
   },
   boldText2: {
     marginTop: verticalScale(25),
-    fontWeight: '500',
+    fontWeight: "500",
   },
 });
